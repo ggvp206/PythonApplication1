@@ -23,77 +23,7 @@ class CalendarApp(QWidget):
         self.setWindowTitle("Электронный Календарь")
         self.resize(800, 600)
 
-        # Фрейм для календаря
-        self.calendar_frame = QWidget(self)
-
-        # Кнопки переключения месяцев
-        self.prev_button = QPushButton("<<", self.calendar_frame)
-        self.next_button = QPushButton(">>", self.calendar_frame)
-
-        # Виджет календаря
-        self.calendar = QCalendarWidget(self.calendar_frame)
-        self.calendar.clicked.connect(self.show_date)
-
-        # Метка для отображения выбранной даты
-        self.date_label = QLabel(self.calendar_frame)
-        self.date_label.setText(self.get_current_date())
-
-        # Фрейм для добавления напоминаний
-        self.reminder_frame = QWidget(self)
-
-        # Кнопка добавления напоминания
-        self.add_reminder_button = QPushButton("Добавить напоминание", self.reminder_frame)
-        self.add_reminder_button.clicked.connect(self.add_reminder)
-
-        # Размещение элементов
-        calendar_layout = QHBoxLayout()
-        calendar_layout.addWidget(self.prev_button)
-        calendar_layout.addWidget(self.calendar)
-        calendar_layout.addWidget(self.next_button)
-        self.calendar_frame.setLayout(calendar_layout)
-
-        reminder_layout = QHBoxLayout()
-        reminder_layout.addWidget(self.add_reminder_button)
-        self.reminder_frame.setLayout(reminder_layout)
-
-        main_layout = QVBoxLayout()
-        main_layout.addWidget(self.calendar_frame)
-        main_layout.addWidget(self.date_label)
-        main_layout.addWidget(self.reminder_frame)
-        self.setLayout(main_layout)
-
-        # Инициализация
-        self.current_date = QDate.currentDate()
-        self.show_date(self.current_date)
-        self.reminders = {}  # Словарь для хранения напоминаний
-
-        # Таймер для проверки напоминаний
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.check_reminders)
-        self.timer.start(1000)  # Проверка каждые 1000 мс
-
-    # ... (остальные методы) ...
-
-    def get_current_date(self):
-        return self.current_date.toString("dd.MM.yyyy")
-
-    def show_date(self, date):
-        self.current_date = date
-        self.date_label.setText(self.get_current_date())
-
-    def add_reminder(self):
-        text, ok = QInputDialog.getText(self, "Добавить напоминание", "Введите текст напоминания:")
-        if ok:
-            date = self.calendar.selectedDate()
-            date_str = date.toString("yyyy-MM-dd")
-            self.reminders[date_str] = text
-            QMessageBox.information(self, "Уведомление", "Напоминание добавлено!")
-
-    def check_reminders(self):
-        current_date = QDate.currentDate().toString("yyyy-MM-dd")
-        if current_date in self.reminders:
-            QMessageBox.information(self, "Напоминание", self.reminders[current_date])
-            del self.reminders[current_date]
+      
 
 if name == "main":
     app = QApplication(sys.argv)
