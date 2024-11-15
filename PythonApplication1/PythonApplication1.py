@@ -1,77 +1,77 @@
-from browser import window, document, html
+import datetime
+import time
 
-def setup_git():
-  """Настраивает Git, создает репозиторий и добавляет .gitignore."""
+class Task:
+    def __init__(self, title, reminder_time):
+        self.title = title
+        self.reminder_time = reminder_time
 
-  # Настройка имени пользователя и почты
-  # В Skulpt нет доступа к файловой системе, поэтому
-  # мы сохраняем эти данные в объекте JavaScript.
-  user_name = "Ваше имя"
-  user_email = "ваша_почта@email.com"
+def add_task(tasks, title, reminder_time):
+    task = Task(title, reminder_time)
+    tasks.append(task)
 
-  # Создание репозитория
-  repo_name = "my_project"
+def check_reminders(tasks):
+    current_time = datetime.datetime.now()
+    for task in tasks:
+        # РџСЂРѕРІРµСЂСЏРµРј, РЅСѓР¶РЅРѕ Р»Рё РЅР°РїРѕРјРЅРёС‚СЊ Рѕ Р·Р°РґР°С‡Рµ
+        if task.reminder_time <= current_time:
+            print(f'РќР°РїРѕРјРёРЅР°РЅРёРµ: {task.title} Р±С‹Р»Рѕ Р·Р°РїР»Р°РЅРёСЂРѕРІР°РЅРѕ РЅР° {task.reminder_time}')
+            tasks.remove(task)  # РЈРґР°Р»СЏРµРј Р·Р°РґР°С‡Сѓ РїРѕСЃР»Рµ РЅР°РїРѕРјРёРЅР°РЅРёСЏ
 
-  # Создание элементов HTML для представления папки
-  # (Не является настоящей файловой системой)
-  repo_folder = html.DIV(repo_name)
-  document.body <= repo_folder
+def main():
+    tasks = []
 
-  # Создание README.md
-  readme_file = html.DIV(Class='readme', Text="# project3")
-  repo_folder <= readme_file
+    # РџСЂРёРјРµСЂ РґРѕР±Р°РІР»РµРЅРёСЏ Р·Р°РґР°С‡Рё
+    add_task(tasks, "Р’СЃС‚СЂРµС‡Р° СЃ РєР»РёРµРЅС‚РѕРј", datetime.datetime.now() + datetime.timedelta(seconds=10))
 
-  # Инициализация репозитория
-  # В Skulpt нет прямого аналога git init
-  # Вы можете использовать JavaScript для отслеживания изменений
-  # в созданных элементах HTML
-
-  # Проверка статуса
-  # В Skulpt нет прямого аналога git status
-  # Вы можете использовать JavaScript для проверки изменений
-  # в созданных элементах HTML
-
-  # Скачивание .gitignore
-  # В Skulpt нет прямого аналога wget
-  # Вы можете использовать JavaScript для загрузки данных с сервера
-  # и добавления их в элемент HTML
-
-  # Добавление .gitignore в индекс
-  # В Skulpt нет прямого аналога git add
-  # Вы можете использовать JavaScript для отслеживания изменений
-  # в созданных элементах HTML
-
-  # Создание первого коммита
-  # В Skulpt нет прямого аналога git commit
-  # Вы можете использовать JavaScript для сохранения истории 
-  # изменений в виде объекта JavaScript
-
-  # Переименование ветки в main
-  # В Skulpt нет прямого аналога git branch
-  # Вы можете использовать JavaScript для управления различными
-  # версиями элементов HTML
-
-  # Добавление удаленного репозитория
-  # В Skulpt нет прямого аналога git remote
-  # Вы можете использовать JavaScript для отправки данных
-  # на сервер с помощью AJAX-запросов
-
-  # Отправка изменений на GitHub
-  # В Skulpt нет прямого аналога git push
-  # Вы можете использовать JavaScript для отправки данных
-  # на сервер с помощью AJAX-запросов
-
-  # Откат к предыдущему коммиту
-  # В Skulpt нет прямого аналога git log
-  # Вы можете использовать JavaScript для просмотра истории
-  # изменений, хранимых в объекте JavaScript
-
-  # Откат к конкретному коммиту
-  # В Skulpt нет прямого аналога git reset
-  # Вы можете использовать JavaScript для восстановления 
-  # предыдущих версий элементов HTML
-
-  print("Git настроен, репозиторий создан!")
+    while tasks:
+        check_reminders(tasks)  # РџСЂРѕРІРµСЂСЏРµРј РЅР°РїРѕРјРёРЅР°РЅРёСЏ
+        time.sleep(5)  # РџСЂРѕРІРµСЂРєР° РєР°Р¶РґС‹Рµ 5 СЃРµРєСѓРЅРґ
 
 if __name__ == "__main__":
-  setup_git()
+    main()
+
+Р’ СЌС‚РѕРј РєРѕРґРµ РјС‹ СЃРѕР·РґР°Р»Рё РєР»Р°СЃСЃ Task, РєРѕС‚РѕСЂС‹Р№ С…СЂР°РЅРёС‚ РЅР°Р·РІР°РЅРёРµ Р·Р°РґР°С‡Рё Рё РІСЂРµРјСЏ РЅР°РїРѕРјРёРЅР°РЅРёСЏ. Р¤СѓРЅРєС†РёСЏ add_task РґРѕР±Р°РІР»СЏРµС‚ Р·Р°РґР°С‡Сѓ РІ СЃРїРёСЃРѕРє, Р°```python
+import datetime
+import time
+
+
+class Task:
+    def init(self, name, due_date):
+        self.name = name
+        self.due_date = due_date
+
+
+def __str__(self):
+    return f"Р—Р°РґР°С‡Р°: {self.name}, РЎСЂРѕРє: {self.due_date}"
+
+class Calendar:
+    def init(self):
+        self.tasks = []
+
+
+def add_task(self, task):
+    self.tasks.append(task)
+    print(f"Р”РѕР±Р°РІР»РµРЅР° Р·Р°РґР°С‡Р°: {task}")
+
+def check_reminders(self):
+    now = datetime.datetime.now()
+    for task in self.tasks:
+        if task.due_date <= now:
+            print(f"РќР°РїРѕРјРёРЅР°РЅРёРµ: {task.name} РїСЂРѕСЃСЂРѕС‡РµРЅР°!")
+
+def main():
+    calendar = Calendar()
+
+
+# РџСЂРёРјРµСЂ РґРѕР±Р°РІР»РµРЅРёСЏ Р·Р°РґР°С‡
+task1 = Task("РћС‚РїСЂР°РІРёС‚СЊ РѕС‚С‡РµС‚", datetime.datetime(2023, 10, 20, 17, 0))
+calendar.add_task(task1)
+
+# РџСЂРѕРІРµСЂРєР° РЅР°РїРѕРјРёРЅР°РЅРёР№ РєР°Р¶РґСѓСЋ РјРёРЅСѓС‚Сѓ
+while True:
+    calendar.check_reminders()
+    time.sleep(60)  # РћР¶РёРґР°РЅРёРµ 60 СЃРµРєСѓРЅРґ
+
+if name == "main":
+    main()
