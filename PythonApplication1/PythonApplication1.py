@@ -31,7 +31,6 @@ def main():
 if __name__ == "__main__":
     main()
 
-В этом коде мы создали класс Task, который хранит название задачи и время напоминания. Функция add_task добавляет задачу в список, а```python
 import datetime
 import time
 
